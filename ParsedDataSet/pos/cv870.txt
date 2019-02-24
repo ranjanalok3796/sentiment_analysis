@@ -1,0 +1,1 @@
+Horribly optimized PC port. Lot of stuttering even on high end hardware. Uplay is a mess, won't work half the time; especially the in game overlay, which won't work unless you've disabled all recording software with overlays like FRAPS and Afterburner.

@@ -1,0 +1,1 @@
+game doesnt start in win 10 after installation.
