@@ -12,8 +12,8 @@ negrevhun = 0
 negrevthou = 0
 for i in range(1,29):
 	print ("Reading file: ", i)
-	filename = '/home/aman/Desktop/AI_Project/Data Set/'+str(i)+'.json'
-	with open(filename) as data_file:    
+	filename = 'Data Set/'+str(i)+'.json'
+	with open(filename) as data_file:
 		data = json.load(data_file)
 
 	for reviews in data["reviews"]:
@@ -61,11 +61,11 @@ for i in range(1,29):
 			if posrevthou == 10:
 				posrevhun = 0
 				posrevthou = posrevthou+1
-		
+
 			if posrevthou == 0:
-				f = "/home/aman/Desktop/AI_Project/ParsedDataSet/pos/cv"+str(posrevhun)+""+str(posrevten)+""+str(posrevone)+".txt"
+				f = "ParsedDataSet/pos/cv"+str(posrevhun)+""+str(posrevten)+""+str(posrevone)+".txt"
 			else:
-				f = "/home/aman/Desktop/AI_Project/ParsedDataSet/pos/cv"+str(posrevthou)+""+str(posrevhun)+""+str(posrevten)+""+str(posrevone)+".txt"
+				f = "ParsedDataSet/pos/cv"+str(posrevthou)+""+str(posrevhun)+""+str(posrevten)+""+str(posrevone)+".txt"
 		else:
 			negrevone = negrevone+1
 			if negrevone == 10:
@@ -78,9 +78,9 @@ for i in range(1,29):
 				negrevhun = 0
 				negrevthou = negrevthou+1
 			if negrevthou == 0:
-				f = "/home/aman/Desktop/AI_Project/ParsedDataSet/neg/cv"+str(negrevhun)+""+str(negrevten)+""+str(negrevone)+".txt"
+				f = "ParsedDataSet/neg/cv"+str(negrevhun)+""+str(negrevten)+""+str(negrevone)+".txt"
 			else:
-				f = "/home/aman/Desktop/AI_Project/ParsedDataSet/neg/cv"+str(negrevthou)+""+str(negrevhun)+""+str(negrevten)+""+str(negrevone)+".txt"
+				f = "ParsedDataSet/neg/cv"+str(negrevthou)+""+str(negrevhun)+""+str(negrevten)+""+str(negrevone)+".txt"
 		outfile = open(f,'w+')
 		outfile.write(comment+"\n")
 		outfile.close()

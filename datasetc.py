@@ -23,12 +23,12 @@ for i in range(1,2):
 	if posrevthou == 10:
 		posrevhun = 0
 		posrevthou = posrevthou+1
-	
-	infile = open("/home/aman/Desktop/AI_Project/ParsedDataSet/neg/cv"+str(posrevhun)+""+str(posrevten)+""+str(posrevone)+".txt",'r')
+
+	infile = open("ParsedDataSet/neg/cv"+str(posrevhun)+""+str(posrevten)+""+str(posrevone)+".txt",'r')
 	data = infile.read()
 	fn = curcnt+i
-	outfile = open("/home/aman/Desktop/AI_Project/ParsedDataSet/neg/cv"+str(fn)+".txt",'w+')
+	outfile = open("ParsedDataSet/neg/cv"+str(fn)+".txt",'w+')
 	outfile.write(data)
-	
+
 	infile.close()
 	outfile.close()

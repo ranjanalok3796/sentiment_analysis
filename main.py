@@ -11,17 +11,17 @@ while resp == 1 or resp == 2 or resp == 3:
 		i=4;
 		for i in range(4,29):
 			print ("Reading file: ", i)
-			filename = '/home/aman/Desktop/AI_Project/Data Set/'+str(i)+'.json'
-			with open(filename) as data_file:    
+			filename = 'Data Set/'+str(i)+'.json'
+			with open(filename) as data_file:
 				data = json.load(data_file)
 
-			with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/incwords.json') as data_file2:    
+			with open('Sentiment Dictionary/incwords.json') as data_file2:    
 				incwdata = json.load(data_file2)
-			
-			with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/decwords.json') as data_file3:    
+
+			with open('Sentiment Dictionary/decwords.json') as data_file3:
 				decwdata = json.load(data_file3)
-		
-			with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/invwords.json') as data_file4:    
+
+			with open('Sentiment Dictionary/invwords.json') as data_file4:
 				invwdata = json.load(data_file4)
 
 			for reviews in data["reviews"]:
@@ -86,27 +86,27 @@ while resp == 1 or resp == 2 or resp == 3:
 							break
 					if chk == 1:
 						continue
-					if sentiment == 1:	
-						with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/poswordfreq.json', 'r') as f1:
+					if sentiment == 1:
+						with open('Sentiment Dictionary/poswordfreq.json', 'r') as f1:
 							pdata = json.load(f1)
 							pdata["no_of_words"] = str(int(pdata["no_of_words"])+1)
 							try:
 								pdata[word] = str(int(pdata[word])+1)
 							except Exception:
 								pdata[word] = 1
-						os.remove('/home/aman/Desktop/AI_Project/Sentiment Dictionary/poswordfreq.json')
-						with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/poswordfreq.json', 'w') as f1:
-							json.dump(pdata, f1, indent=4)			
+						os.remove('Sentiment Dictionary/poswordfreq.json')
+						with open('Sentiment Dictionary/poswordfreq.json', 'w') as f1:
+							json.dump(pdata, f1, indent=4)
 					else:
-						with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/negwordfreq.json', 'r') as f1:
+						with open('Sentiment Dictionary/negwordfreq.json', 'r') as f1:
 							pdata = json.load(f1)
 							pdata["no_of_words"] = str(int(pdata["no_of_words"])+1)
 							try:
 								pdata[word] = str(int(pdata[word])+1)
 							except Exception:
 								pdata[word] = 1
-						os.remove('/home/aman/Desktop/AI_Project/Sentiment Dictionary/negwordfreq.json')
-						with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/negwordfreq.json', 'w') as f1:
+						os.remove('Sentiment Dictionary/negwordfreq.json')
+						with open('Sentiment Dictionary/negwordfreq.json', 'w') as f1:
 							json.dump(pdata, f1, indent=4)
 	elif resp == 2:
 		print ("Enter the comment: ")
@@ -118,21 +118,21 @@ while resp == 1 or resp == 2 or resp == 3:
 				cmt[i] = ' ';
 		cmt = "".join(cmt)
 		cmtwords = cmt.split();
-		with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/incwords.json') as data_file2:    
+		with open('Sentiment Dictionary/incwords.json') as data_file2:
 			incwdata = json.load(data_file2)
-			
-		with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/decwords.json') as data_file3:    
+
+		with open('Sentiment Dictionary/decwords.json') as data_file3:
 			decwdata = json.load(data_file3)
-		
-		with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/invwords.json') as data_file4:    
+
+		with open('Sentiment Dictionary/invwords.json') as data_file4:
 			invwdata = json.load(data_file4)
-		
-		with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/poswordfreq.json') as pf:    
+
+		with open('Sentiment Dictionary/poswordfreq.json') as pf:
 			poswdata = json.load(pf)
-			
-		with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/negwordfreq.json') as pf:    
+
+		with open('Sentiment Dictionary/negwordfreq.json') as pf:
 			negwdata = json.load(pf)
-			
+
 		chk = 0
 		posprodprob = 1
 		negprodprob = 1
@@ -163,7 +163,7 @@ while resp == 1 or resp == 2 or resp == 3:
 				except Exception:
 					cnt = int(poswdata["no_of_words"])
 				posprodprob = posprodprob * (cnt/int(poswdata["no_of_words"]))
-			
+
 				try:
 					cnt = int(negwdata[word])
 				except Exception:
@@ -195,7 +195,7 @@ while resp == 1 or resp == 2 or resp == 3:
 				except Exception:
 					cnt = int(poswdata["no_of_words"])*0.5
 				posprodprob = posprodprob * ((cnt*2)/int(poswdata["no_of_words"]))
-			
+
 				try:
 					cnt = int(negwdata[word])
 				except Exception:
@@ -227,7 +227,7 @@ while resp == 1 or resp == 2 or resp == 3:
 				except Exception:
 					cnt = int(poswdata["no_of_words"])*2
 				posprodprob = posprodprob * ((cnt*0.5)/int(poswdata["no_of_words"]))
-			
+
 				try:
 					cnt = int(negwdata[word])
 				except Exception:
@@ -259,13 +259,13 @@ while resp == 1 or resp == 2 or resp == 3:
 				except Exception:
 					cnt = int(poswdata["no_of_words"])
 				negprodprob = negprodprob * (cnt/int(poswdata["no_of_words"]))
-			
+
 				try:
 					cnt = int(negwdata[word])
 				except Exception:
 					cnt = int(negwdata["no_of_words"])
 				posprodprob = posprodprob * (cnt/int(negwdata["no_of_words"]))
-			
+
 		posw = int(poswdata["no_of_words"])
 		negw = int(negwdata["no_of_words"])
 		posprob = posprodprob * (posw/(posw+negw))
@@ -284,8 +284,8 @@ while resp == 1 or resp == 2 or resp == 3:
 		nfn = 0
 		for i in range(1,4):
 			print ("Reading file: ", i)
-			filename = '/home/aman/Desktop/AI_Project/Data Set/'+str(i)+'.json'
-			with open(filename) as data_file:    
+			filename = 'Data Set/'+str(i)+'.json'
+			with open(filename) as data_file:
 				data = json.load(data_file)
 			for reviews in data["reviews"]:
 				lines = reviews["review"].splitlines()
@@ -326,21 +326,21 @@ while resp == 1 or resp == 2 or resp == 3:
 						comment[i] = ' ';
 				cmt = "".join(comment)
 				cmtwords = cmt.split();
-				with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/incwords.json') as data_file2:    
+				with open('Sentiment Dictionary/incwords.json') as data_file2:
 					incwdata = json.load(data_file2)
-			
-				with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/decwords.json') as data_file3:    
+
+				with open('Sentiment Dictionary/decwords.json') as data_file3:
 					decwdata = json.load(data_file3)
-		
-				with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/invwords.json') as data_file4:    
+
+				with open('Sentiment Dictionary/invwords.json') as data_file4:
 					invwdata = json.load(data_file4)
-		
-				with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/poswordfreq.json') as pf:    
+
+				with open('Sentiment Dictionary/poswordfreq.json') as pf:
 					poswdata = json.load(pf)
-			
-				with open('/home/aman/Desktop/AI_Project/Sentiment Dictionary/negwordfreq.json') as pf:    
+
+				with open('Sentiment Dictionary/negwordfreq.json') as pf:
 					negwdata = json.load(pf)
-			
+
 				chk = 0
 				posprodprob = 1
 				negprodprob = 1
@@ -371,7 +371,7 @@ while resp == 1 or resp == 2 or resp == 3:
 						except Exception:
 							cnt = int(poswdata["no_of_words"])
 						posprodprob = posprodprob * (cnt/int(poswdata["no_of_words"]))
-			
+
 						try:
 							cnt = int(negwdata[word])
 						except Exception:
@@ -403,7 +403,7 @@ while resp == 1 or resp == 2 or resp == 3:
 						except Exception:
 							cnt = int(poswdata["no_of_words"])*0.5
 						posprodprob = posprodprob * ((cnt*2)/int(poswdata["no_of_words"]))
-			
+
 						try:
 							cnt = int(negwdata[word])
 						except Exception:
@@ -435,7 +435,7 @@ while resp == 1 or resp == 2 or resp == 3:
 						except Exception:
 							cnt = int(poswdata["no_of_words"])*2
 						posprodprob = posprodprob * ((cnt*0.5)/int(poswdata["no_of_words"]))
-			
+
 						try:
 							cnt = int(negwdata[word])
 						except Exception:
@@ -467,13 +467,13 @@ while resp == 1 or resp == 2 or resp == 3:
 						except Exception:
 							cnt = int(poswdata["no_of_words"])
 						negprodprob = negprodprob * (cnt/int(poswdata["no_of_words"]))
-			
+
 						try:
 							cnt = int(negwdata[word])
 						except Exception:
 							cnt = int(negwdata["no_of_words"])
 						posprodprob = posprodprob * (cnt/int(negwdata["no_of_words"]))
-			
+
 				posw = int(poswdata["no_of_words"])
 				negw = int(negwdata["no_of_words"])
 				posprob = posprodprob * (posw/(posw+negw))
